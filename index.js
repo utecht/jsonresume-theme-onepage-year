@@ -1,5 +1,6 @@
 var fs = require("fs");
 var Handlebars = require("handlebars");
+var Moment = require("moment");
 
 COURSES_COLUMNS = 3;
 
@@ -61,3 +62,12 @@ function render(resume) {
 module.exports = {
 	render: render
 };
+
+Handlebars.registerHelper("prettifyDate", function(resumeDate) {
+  if (!resumeDate) {
+    return 'Present';
+  }
+  var newDate = Moment(resumeDate).format('MMM YYYY');
+  return newDate;
+});
+
